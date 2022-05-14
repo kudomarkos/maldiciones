@@ -17,4 +17,4 @@ nette-blog/
   o Directory www is supposed to store images, JavaScript, CSS, and other publicly available files.
     This is the only directory directly accessible from the browser
 
-    
+    Impresionante
