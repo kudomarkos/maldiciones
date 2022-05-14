@@ -1,0 +1,20 @@
+nette-blog/
+├── app/              ← application directory
+│   ├── Presenters/   ← presenter classes
+│   │   └── templates/← templates
+│   ├── Router/       ← configuration of URL addresses
+│   └── Bootstrap.php ← booting class Bootstrap
+├── bin/              ← scripts for the command line
+├── config/           ← configuration files
+├── log/              ← error logs
+├── temp/             ← temporary files, cache, …
+├── vendor/           ← libraries installed by Composer
+│   └── autoload.php  ← autoloading of libraries installed by Composer
+└── www/              ← public folder - the only place accessible from browser
+    └── index.php     ← initial file that launches the application
+
+
+  o Directory www is supposed to store images, JavaScript, CSS, and other publicly available files.
+    This is the only directory directly accessible from the browser
+
+    
