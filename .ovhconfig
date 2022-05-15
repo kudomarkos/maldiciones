@@ -1,0 +1,6 @@
+environment=production
+http.firewall=none
+app.engine.version=8.1
+app.engine=php
+container.image=stable64
+

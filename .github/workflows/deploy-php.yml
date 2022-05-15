@@ -110,6 +110,6 @@ jobs:
         host: ${{ secrets.SERVIDORCETE }}
         user: ${{ secrets.USUARIOTE }}
         password: ${{ secrets.CONTRASENIA }}
-        localDir: "www"
-        remoteDir: "www"
+        localDir: "."
+        remoteDir: "."
         options: "--delete --asci"
