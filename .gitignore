@@ -1,4 +1,1 @@
-config/local.neon
-/log/*.log
-/tmp
 /vendor
