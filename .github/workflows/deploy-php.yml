@@ -17,18 +17,18 @@
 # For more information on the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # For more samples to get started with GitHub Action workflows to deploy to Azure: https://github.com/Azure/actions-workflow-samples
 
-name: Build and deploy PHP app to FTP
+# name: Build and deploy PHP app to FTP
 
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+# on:
+#   push:
+#     branches:
+#       - main
+#   workflow_dispatch:
 
-env:
-  PHP_VERSION: '8.x'                  # set this to the PHP version to use
+# env:
+#   PHP_VERSION: '8.x'                  # set this to the PHP version to use
 
-jobs:
+# jobs:
   # build:
   #   runs-on: ubuntu-latest
 
@@ -71,28 +71,45 @@ jobs:
   #         name: php-app
   #         path: .
 
-  web-deploy:
-      name: 🎉 Deploy
-      runs-on: ubuntu-latest
-      steps:
-      - name: 🚚 Get latest code
-        uses: actions/checkout@v2
+  # web-deploy:
+  #     name: 🎉 Deploy
+  #     runs-on: ubuntu-latest
+  #     steps:
+  #     - name: 🚚 Get latest code
+  #       uses: actions/checkout@v2
 
-      # - name: 📂 Sync files
-      #   uses: SamKirkland/FTP-Deploy-Action@4.3.0
-      #   with:
-      #     server: ${{ secrets.SERVIDORCETE }}
-      #     username: ${{ secrets.USUARIOTE }}
-      #     password: ${{ secrets.CONTRASENIA }}
+  #     # - name: 📂 Sync files
+  #     #   uses: SamKirkland/FTP-Deploy-Action@4.3.0
+  #     #   with:
+  #     #     server: ${{ secrets.SERVIDORCETE }}
+  #     #     username: ${{ secrets.USUARIOTE }}
+  #     #     password: ${{ secrets.CONTRASENIA }}
 
-      - name: 📂 Sync files
-      uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
+  #     - name: 📂 Sync files
+  #     uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
+  #     with:
+  #       ftp_host: ${{ secrets.SERVIDORCETE }}
+  #       ftp_username: ${{ secrets.USUARIOTE }}
+  #       ftp_password: ${{ secrets.CONTRASENIA }}
+  #       local_source_dir: "www"
+  #       dist_target_dir: "www"
+  #       delete: "true"
+  #       only_newer: "true"
+  #       # exclude: "'^logs/' '^README.md'"
+name: Deploy via ftp
+on: push
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Upload ftp
+      uses: sebastianpopp/ftp-action@releases/v2
       with:
-        ftp_host: ${{ secrets.SERVIDORCETE }}
-        ftp_username: ${{ secrets.USUARIOTE }}
-        ftp_password: ${{ secrets.CONTRASENIA }}
-        local_source_dir: "www"
-        dist_target_dir: "www"
-        delete: "true"
-        only_newer: "true"
-        # exclude: "'^logs/' '^README.md'"
+        host: ${{ secrets.SERVIDORCETE }}
+        user: ${{ secrets.USUARIOTE }}
+        password: ${{ secrets.CONTRASENIA }}
+        localDir: "www"
+        remoteDir: "www"
+        options: "--delete --asci"
