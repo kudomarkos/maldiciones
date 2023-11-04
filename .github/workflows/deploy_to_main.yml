@@ -1,0 +1,50 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.x
+
+    - name: Install dependencies
+      run: |
+        pip install Flask
+        pip install Frozen-Flask
+
+    - name: Build static site
+      run: |
+        python miapp.py build
+      working-directory: ./  # Asegúrate de ajustar la ruta al script de Flask
+
+    - name: Create temporary directory
+      run: mkdir /tmp/build
+      working-directory: /tmp
+
+    - name: Copy files to temporary directory
+      run: cp -r $GITHUB_WORKSPACE/build/* /tmp/build
+
+    - name: Checkout main
+      run: git checkout main
+
+    - name: Copy files from temporary directory to root
+      run: cp -r /tmp/build/* $GITHUB_WORKSPACE/
+
+    - name: Commit and push to main
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@users.noreply.github.com"
+        git add .
+        git commit -m "Deploy static site from GitHub Actions"
+        git push
