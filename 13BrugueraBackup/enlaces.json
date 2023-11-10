@@ -1,0 +1,571 @@
+{
+
+    "urls": [
+      {
+        "loc": "http://seronoser.free.fr/bruguera/index.htm",
+        "lastmod": "2013-06-01T07:25:02+00:00",
+        "priority": 1
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/creditos.htm",
+        "lastmod": "2013-04-30T09:49:25+00:00",
+        "priority": 0.8
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/formulaire.html",
+        "lastmod": "2013-04-30T09:49:55+00:00",
+        "priority": 0.8
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/autores.htm",
+        "lastmod": "2013-04-30T09:49:14+00:00",
+        "priority": 0.8
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/personajes.htm",
+        "lastmod": "2013-04-30T09:51:02+00:00",
+        "priority": 0.8
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/historia.htm",
+        "lastmod": "2016-05-04T14:21:34+00:00",
+        "priority": 0.8
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/testimonios.htm",
+        "lastmod": "2013-04-30T09:51:14+00:00",
+        "priority": 0.8
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/revistas.htm",
+        "lastmod": "2013-04-30T09:51:11+00:00",
+        "priority": 0.8
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/libros.htm",
+        "lastmod": "2014-01-24T15:40:18+00:00",
+        "priority": 0.8
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/mortadelo.htm",
+        "lastmod": "2014-02-02T16:24:11+00:00",
+        "priority": 0.8
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/index.htm",
+        "lastmod": "2013-06-01T07:25:02+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/miguelfernandezsoto.htm",
+        "lastmod": "2013-04-30T09:50:36+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/antoniotausiet.htm",
+        "lastmod": "2013-04-30T09:49:13+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/penarroya.htm",
+        "lastmod": "2013-04-30T09:51:00+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/vazquez.htm",
+        "lastmod": "2013-04-30T09:51:18+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/conti.htm",
+        "lastmod": "2013-04-30T09:49:24+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/martz.htm",
+        "lastmod": "2013-04-30T09:50:35+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/raf.htm",
+        "lastmod": "2016-01-15T16:13:24+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/figuerasterror.htm",
+        "lastmod": "2013-04-30T09:49:54+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/casanyes.htm",
+        "lastmod": "2013-04-30T09:49:16+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/dialogosparabesugos.htm",
+        "lastmod": "2013-04-30T09:49:30+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/redondoyelcapitantrueno.htm",
+        "lastmod": "2013-04-30T09:51:10+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/coll.htm",
+        "lastmod": "2013-04-30T09:49:22+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/serafin.htm",
+        "lastmod": "2013-04-30T09:51:12+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/forgeshistoria.htm",
+        "lastmod": "2013-04-30T09:49:55+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/personajes73.htm",
+        "lastmod": "2013-04-30T09:51:03+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/13ruedelpercebe.htm",
+        "lastmod": "2015-12-30T17:00:35+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/laabuelitapaz.htm",
+        "lastmod": "2013-04-30T09:50:05+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/lossenoresdealcorcon.htm",
+        "lastmod": "2013-04-30T09:50:32+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/anacleto.htm",
+        "lastmod": "2013-04-30T09:49:11+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/cebolleta.htm",
+        "lastmod": "2013-04-30T09:49:17+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/pepegoterayotilio.htm",
+        "lastmod": "2013-04-30T09:51:01+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/sirtim.htm",
+        "lastmod": "2019-11-26T14:42:12+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/chicha.htm",
+        "lastmod": "2013-04-30T09:49:19+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/anaycleto.htm",
+        "lastmod": "2013-04-30T09:49:12+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/cleopatra.htm",
+        "lastmod": "2013-04-30T09:49:21+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/triptico.htm",
+        "lastmod": "2013-04-30T09:51:16+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/personajesmartzschmidt.htm",
+        "lastmod": "2013-04-30T09:51:07+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/losbajosfondos.htm",
+        "lastmod": "2013-04-30T09:50:30+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/nosferatu.htm",
+        "lastmod": "2013-04-30T09:50:56+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/chicas.htm",
+        "lastmod": "2013-10-09T12:43:21+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/habichuela.htm",
+        "lastmod": "2013-04-30T09:49:58+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/vazquezpequenopais.htm",
+        "lastmod": "2013-04-30T09:51:19+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/16ruedelpecesbarba.htm",
+        "lastmod": "2013-04-30T09:49:06+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/elimperiobruguera.htm",
+        "lastmod": "2013-04-30T09:49:43+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/elhumordelaescuelabruguera.htm",
+        "lastmod": "2013-04-30T09:49:36+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/redaccion1959.htm",
+        "lastmod": "2013-04-30T09:51:09+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/ibanezdeclaracionesdeprensa.htm",
+        "lastmod": "2013-04-30T09:49:59+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/nicolas.htm",
+        "lastmod": "2013-04-30T09:50:55+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/yoestuvealli.htm",
+        "lastmod": "2013-04-30T09:51:21+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/vazquezporelmismo.htm",
+        "lastmod": "2013-04-30T09:51:20+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/magosdelhumor.htm",
+        "lastmod": "2013-04-30T09:50:34+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/entrevistavazquez.htm",
+        "lastmod": "2010-02-24T13:35:41+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/entrevistavazquezamaniaco.htm",
+        "lastmod": "2010-02-24T13:35:52+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/entrevistarafamaniaco.htm",
+        "lastmod": "2010-02-24T13:35:35+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/entrevistaibanezamaniaco.htm",
+        "lastmod": "2013-04-30T09:49:51+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/entrevistaibanezu.htm",
+        "lastmod": "2011-08-29T21:34:00+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/entrevistarovira02.htm",
+        "lastmod": "2010-02-24T13:35:36+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/entrevistarovira01.htm",
+        "lastmod": "2010-02-24T13:35:36+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/entrevistasfigueras.htm",
+        "lastmod": "2010-02-24T13:35:40+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/bruguelandia.htm",
+        "lastmod": "2013-04-30T09:49:15+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/elcinedehoy.htm",
+        "lastmod": "2013-04-30T09:49:32+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/joyasliterariasjuveniles.htm",
+        "lastmod": "2013-04-30T09:50:04+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/monstruos.htm",
+        "lastmod": "2013-04-30T09:50:37+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/mortadelorevista.htm",
+        "lastmod": "2013-04-30T09:50:53+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/topeguai.htm",
+        "lastmod": "2013-04-30T09:51:15+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/demassie.htm",
+        "lastmod": "2013-04-30T09:49:26+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/almanaquesyextras.htm",
+        "lastmod": "2013-04-30T09:49:11+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/mortadelogigante.htm",
+        "lastmod": "2013-04-30T09:50:51+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/doslibrosentornoamyf.htm",
+        "lastmod": "2013-04-30T09:49:31+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/elmundodemyfprensa.htm",
+        "lastmod": "2013-04-30T09:49:50+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/elmundodemyfelmakingof.htm",
+        "lastmod": "2013-04-30T09:49:44+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/elmundodemyfnuevostextos.htm",
+        "lastmod": "2013-04-30T09:49:48+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/loshijosdepulgarcito.htm",
+        "lastmod": "2013-04-30T09:50:31+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/mortadeloyfilemon50aniversario.htm",
+        "lastmod": "2013-04-30T09:50:54+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/franciscoibaneztalaveraymyf.htm",
+        "lastmod": "2013-04-30T09:49:56+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/fichademyf.htm",
+        "lastmod": "2013-04-30T09:49:53+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/mortadeloevoluciongrafica.htm",
+        "lastmod": "2013-04-30T09:50:39+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/loqueelvientosedejo.htm",
+        "lastmod": "2013-04-30T09:50:29+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/lasautenticasportadas.htm",
+        "lastmod": "2013-10-06T17:05:43+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/mortadeloportadaspulgarcito.htm",
+        "lastmod": "2013-04-30T09:50:52+00:00",
+        "priority": 0.64
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/rafentitanic.htm",
+        "lastmod": "2016-01-15T16:13:57+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/rafstorys.htm",
+        "lastmod": "2013-04-30T09:51:08+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/figueras/drmortis/index.html",
+        "lastmod": "2010-02-24T17:17:47+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/figueras/shock/index.html",
+        "lastmod": "2010-02-24T17:26:10+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/figueras/nne/index.html",
+        "lastmod": "2010-02-24T17:24:10+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/figueras/em/index.html",
+        "lastmod": "2010-02-24T17:19:19+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/figueras/hyde/index.html",
+        "lastmod": "2010-02-24T17:23:18+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/figueras/dracula/index.html",
+        "lastmod": "2010-02-24T17:14:27+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/figueras/teb/index.html",
+        "lastmod": "2010-02-24T17:31:44+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/espuma.htm",
+        "lastmod": "2013-04-30T09:49:52+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/ListadoSirTim.doc",
+        "lastmod": "2010-02-24T13:39:56+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/cleopatra/album/index.html",
+        "lastmod": "2010-02-24T17:12:24+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/joyasliterariasjuvenileslistado.htm",
+        "lastmod": "2013-04-01T23:13:04+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/elmundodemyfnuevostextos/Listadodepublicaciones.doc",
+        "lastmod": "2010-02-24T14:42:08+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/lasautenticasportadas01.htm",
+        "lastmod": "2021-10-24T16:14:37+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/lasautenticasportadas02.htm",
+        "lastmod": "2013-04-30T09:50:09+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/lasautenticasportadas03.htm",
+        "lastmod": "2013-04-30T09:50:10+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/lasautenticasportadas04.htm",
+        "lastmod": "2013-04-30T09:50:11+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/lasautenticasportadas05.htm",
+        "lastmod": "2013-04-30T09:50:12+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/lasautenticasportadas06.htm",
+        "lastmod": "2019-07-01T09:10:21+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/lasautenticasportadas07.htm",
+        "lastmod": "2013-04-30T09:50:15+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/lasautenticasportadas08.htm",
+        "lastmod": "2014-03-30T13:26:37+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/lasautenticasportadas09.htm",
+        "lastmod": "2013-04-30T09:50:18+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/lasautenticasportadas10.htm",
+        "lastmod": "2014-05-07T18:35:34+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/lasautenticasportadas11.htm",
+        "lastmod": "2013-04-30T09:50:20+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/lasautenticasportadas12.htm",
+        "lastmod": "2013-04-30T09:50:21+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/lasautenticasportadas13.htm",
+        "lastmod": "2013-04-30T09:50:23+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/lasautenticasportadas14.htm",
+        "lastmod": "2013-04-30T09:50:24+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/lasautenticasportadas15.htm",
+        "lastmod": "2013-04-30T09:50:25+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/lasautenticasportadas16.htm",
+        "lastmod": "2013-04-30T09:50:27+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/lasautenticasportadas17.htm",
+        "lastmod": "2013-07-22T18:53:26+00:00",
+        "priority": 0.51
+      },
+      {
+        "loc": "http://seronoser.free.fr/bruguera/otrasportadasinteresantes01.htm",
+        "lastmod": "2013-04-30T09:50:57+00:00",
+        "priority": 0.51
+      }
+    ]
+
+}
