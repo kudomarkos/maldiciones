@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>ED2K Link Converter</title>
+  <script>
+	var fileSizeTotal = 0;
+	var fileNumberShow = 0;
+	
+	function calFileSize(inFileSize){
+		var outFileSize = "";
+		if (inFileSize < 1048576) {
+			outFileSize = (inFileSize/1024).toFixed(2) + " K";
+		} else if (inFileSize < 1073741824) {
+			outFileSize = (inFileSize/1048576).toFixed(2) + " M";
+		} else if (inFileSize > 1073741824) {
+			outFileSize = (inFileSize/1073741824).toFixed(2) + " G";
+		} else {
+			window.alert("Wrong file size!");
+			return
+		}
+		return outFileSize 
+	}
+  
+  function convLink(){
+   if(varifyLink()){
+    var inLink = document.getElementById("input").value.replace(/\s/g,'');
+	var fileGroup = inLink.split("ed2k://|file|");
+	var fileNumber = fileGroup.length;
+    var fileInfo = new Array();
+    var fileName = new Array();
+    var fileSize = new Array();
+    var fileSizeShow = new Array();
+	var fileShowGroup = new Array();
+
+	fileNumberShow = fileNumber - 1;
+
+	for (i = 0; i < (fileNumber - 1); i++){
+	 fileInfo[i] = fileGroup[i+1].split("|");
+	 fileName[i] = fileInfo[i][0];
+	 fileSize[i] = fileInfo[i][1];
+	 fileSizeShow[i] = calFileSize(fileSize[i]);
+	 fileSizeTotal = fileSizeTotal + fileSize[i]/1;
+     fileShowGroup[i] = "<tr><td><a title=\""+ decodeURIComponent(fileName[i]) + " | " + fileSizeShow[i] + "\" href=\"ed2k://|file|" + decodeURIComponent(fileGroup[i+1]) + "\">" + decodeURIComponent(fileName[i]) + "</a></td><td align=\"right\" style=\"width:80px;\">" + fileSizeShow[i] + "</td></tr>";
+	}
+
+    var outLink = "";
+	outLink += "<div id=\"ed2k\"";
+	if(document.getElementById("withCSS").checked){
+		outLink += " style=\"border:1px dashed #004D99;margin:5px;padding:5px;text-shadow:1px 1px #D9D9D9;\"";
+	}
+	outLink +="><table width=\"100%\">";
+	outLink += fileShowGroup.join("");
+	if (fileNumberShow > 1){
+		outLink += "<tr><td>&nbsp;</td><td align=\"right\"><span style=\"font-weight:bold;border-top:1px dashed #004D99;\">" + calFileSize(fileSizeTotal) +"</span></td></tr>";
+	}
+	outLink += "</table></div>";
+	
+	fileSizeTotal = 0;
+
+    document.getElementById("output").value = outLink;
+    document.getElementById("output").select();
+    document.getElementById("preview").innerHTML = outLink;
+   } else {
+    window.alert("There is no \"ed2k://|file|\" in your link!");
+   }
+  }
+  
+  function varifyLink(){
+   var vaLink = document.getElementById("input").value;
+   if(vaLink.toLowerCase().indexOf("ed2k://|file|") == 0){
+    return true
+   } else {
+    return false
+   }
+  }
+  </script>
+ </head>
+ 
+ <body style="padding:10px;font-family:Arial, Tahoma, sans-serif;">
+ <h2>ED2K Link Converter</h2>
+ <span id="ver">Version 0.6</span> <input type="button" value="   Convert   " onClick="convLink()" /> <span title="div id=&quot;ed2k&quot;"><input type="checkbox" id="withCSS" checked="checked"> CSS</span>
+ <p>
+ <b>[Input]</b><br />
+ <textarea cols="72" rows="8" id="input" onClick="this.value=''">ed2k://|file|eMule0.50a.[contentdb.emule-project.net].zip|2907254|E8C636D0C0486378BF61E6A3000D0FB7|h=S5ZFHA4PBCMYAWGVAPPPK4ISNXVHUUGY|/</textarea>
+ <p />
+<b>[Output]</b><br />
+ <textarea cols="72" rows="8" id="output" readonly="true"></textarea>
+ <p />
+<b>[Preview]</b><br />
+ <div id="preview" style="width: 600px;"></div>
+ <h4>Powered by <a title="horan studio" href="http://horan.cc/">horan.cc</h4>
+ </body></html>
