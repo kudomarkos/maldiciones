@@ -1,0 +1,36 @@
+name: Execute SQLite Commands
+
+on:
+  push:
+    paths:
+      - 'mis_ordenes.txt'  # Ejecutar el action cuando se modifique el archivo de órdenes
+      - 'miBD.sqlite3'     # Ejecutar el action cuando se modifique la base de datos SQLite
+
+jobs:
+  execute-commands:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install SQLite
+        run: sudo apt-get install sqlite3
+
+      - name: Create output directory
+        run: mkdir -p output  # Crea la carpeta 'output' si no existe
+
+      - name: Execute SQLite commands from file
+        run: |
+          while IFS= read -r line; do
+            eval "$line"
+          done < mis_ordenes.txt
+
+      - name: Commit and push JSON files
+        run: |
+          git config --local user.name "github-actions"
+          git config --local user.email "github-actions@github.com"
+          git add output/*.json
+          git commit -m "Update JSON files from SQLite commands" || echo "No changes to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Usa el token de GitHub para autenticar el push
