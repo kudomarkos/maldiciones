@@ -21,25 +21,21 @@ jobs:
 
       - name: Execute SQLite commands from file
         run: |
-          while IFS= read -r line; do
-            eval "$line"
-          done < mis_ordenes.txt
+          sqlite3 Publicaciones.sqlite3 < mis_ordenes.txt
+
+      - name: List output directory
+        run: ls -l output
 
       - name: Commit and push output directory
         run: |
-          current_branch=$(git rev-parse --abbrev-ref HEAD)
-          if [ "$current_branch" = "main" ]; then
-            if [ -n "$(ls -A output 2>/dev/null)" ]; then
-              git config --local user.name "github-actions"
-              git config --local user.email "github-actions@github.com"
-              git add output/
-              git commit -m "Update files in output directory"
-              git push
-            else
-              echo "No files to commit in output directory."
-            fi
+          if [ -n "$(ls -A output 2>/dev/null)" ]; then
+            git config --local user.name "github-actions"
+            git config --local user.email "github-actions@github.com"
+            git add output/
+            git commit -m "Update files in output directory"
+            git push
           else
-            echo "Not on the main branch. Current branch is $current_branch."
+            echo "No files to commit in output directory."
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
