@@ -1,1 +1,14 @@
+sqlite3 Publicaciones.sqlite3 <<EOF
+.mode json
+.output output/VISTA_01.json
+SELECT * FROM TAB_PUBLICACIONES;
+.output stdout
 
+.output output/VISTA_02.json
+SELECT * FROM TAB_PUBLICACIONES;
+.output stdout
+
+.output output/VISTA_03.json
+SELECT * FROM TAB_PUBLICACIONES;
+.output stdout
+EOF
