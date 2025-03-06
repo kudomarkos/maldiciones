@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - 'mis_ordenes.txt'  # Ejecutar el action cuando se modifique el archivo de órdenes
-      - 'miBD.sqlite3'     # Ejecutar el action cuando se modifique la base de datos SQLite
+      - 'Publicaciones.sqlite3'     # Ejecutar el action cuando se modifique la base de datos SQLite
 
 jobs:
   execute-commands:
