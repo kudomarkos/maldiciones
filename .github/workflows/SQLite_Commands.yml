@@ -25,12 +25,21 @@ jobs:
             eval "$line"
           done < mis_ordenes.txt
 
-      - name: Commit and push JSON files
+      - name: Commit and push output directory
         run: |
-          git config --local user.name "github-actions"
-          git config --local user.email "github-actions@github.com"
-          git add output/*.json
-          git commit -m "Update JSON files from SQLite commands" || echo "No changes to commit"
-          git push
+          current_branch=$(git rev-parse --abbrev-ref HEAD)
+          if [ "$current_branch" = "main" ]; then
+            if [ -n "$(ls -A output 2>/dev/null)" ]; then
+              git config --local user.name "github-actions"
+              git config --local user.email "github-actions@github.com"
+              git add output/
+              git commit -m "Update files in output directory"
+              git push
+            else
+              echo "No files to commit in output directory."
+            fi
+          else
+            echo "Not on the main branch. Current branch is $current_branch."
+          fi
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Usa el token de GitHub para autenticar el push
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
