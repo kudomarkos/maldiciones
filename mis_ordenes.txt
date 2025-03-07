@@ -1,12 +1,12 @@
 .mode json
-.output output/VISTA_01.json
-SELECT * FROM TAB_PUBLICACIONES;
+.output output/PUBLICACIONES_BRUGUERA.json
+SELECT * FROM TAB_PUBLICACIONES_BRUGUERA;
 .output stdout
 
-.output output/VISTA_02.json
-SELECT * FROM TAB_PUBLICACIONES;
+.output output/otroLupastro.json
+SELECT * FROM otroLupastro;
 .output stdout
 
-.output output/VISTA_03.json
-SELECT * FROM TAB_PUBLICACIONES;
+.output output/TAB_LUPO_PUBLICACIONES.json
+SELECT * FROM TAB_LUPO_PUBLICACIONES;
 .output stdout
