@@ -31,6 +31,14 @@
 </table>
 
 <script>
+// Supongamos que 'data' es el objeto JSON que obtuviste
+function replaceNullsWithEmptyStrings(obj) {
+    for (const key in obj) {
+        if (obj[key] === null) {
+            obj[key] = ''; // Reemplaza null con una cadena vacía
+        }
+    }
+}
 // Hacer un fetch del JSON
 fetch('https://kudomarkos.github.io/maldiciones/output/otroLupastro.json')
     .then(response => {
@@ -43,7 +51,8 @@ fetch('https://kudomarkos.github.io/maldiciones/output/otroLupastro.json')
     .then(dataList => {
         // Estructurar los datos en el formato deseado
         var data = { "datitos": dataList };
-        
+        // Reemplazar nulls con cadenas vacías
+        data.datitos.forEach(replaceNullsWithEmptyStrings);
         // Usar w3.displayObject para mostrar los datos
         w3.displayObject("id01", data);
     })
