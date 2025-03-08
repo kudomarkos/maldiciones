@@ -1,20 +1,43 @@
 <!DOCTYPE html>
-<html>
-<title>W3.CSS</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<script src="https://www.w3schools.com/lib/w3.js" defer></script>
-
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo W3.js</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+</head>
 <body>
 
 <div class="w3-container">
-  <h1>Heading 1 (36px)</h1>
-  <h2>Heading 2 (30px)</h2>
-  <h3>Heading 3 (24px)</h3>
-  <h4>Heading 4 (20px)</h4>
-  <h5>Heading 5 (18px)</h5>
-  <h6>Heading 6 (16px)</h6>
+    <h2>Contenido de otroLupastro.js</h2>
+    <table class="w3-table w3-bordered w3-striped">
+        <thead>
+            <tr>
+                <th>Contenido</th>
+            </tr>
+        </thead>
+        <tbody id="data-table">
+            <!-- Aquí se insertará el contenido -->
+        </tbody>
+    </table>
 </div>
 
+<script>
+    // Cargar el contenido de otroLupastro.js
+    w3.getHttp("output/otroLupastro.js", function(response) {
+        // Suponiendo que el contenido es un texto que deseas mostrar en la tabla
+        var tableBody = document.getElementById("data-table");
+        
+        // Crear una nueva fila
+        var newRow = tableBody.insertRow();
+        var newCell = newRow.insertCell(0);
+        
+        // Insertar el contenido en la celda
+        newCell.textContent = response;
+    });
+</script>
+
 </body>
-</html> 
+</html>
+
