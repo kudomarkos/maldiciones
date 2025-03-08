@@ -9,32 +9,46 @@
 </head>
 <body>
 
-<div class="w3-container">
-    <h2>Contenido de otroLupastro.js</h2>
-    <table class="w3-table w3-bordered w3-striped">
-        <thead>
-            <tr>
-                <th>Contenido</th>
-            </tr>
-        </thead>
-        <tbody id="data-table">
-            <!-- Aquí se insertará el contenido -->
-        </tbody>
-    </table>
-</div>
+<h2>Testing W3.JS in HTML</h2>
+
+<table id="id01">
+  <tr>
+    <th>TITULO</th>
+    <th>PAGV</th>
+    <th>AUTOR</th>
+    <th>ANIO</th>
+    <th>PRIMERA</th>
+    <th>SEGUNDA</th>
+  </tr>
+  <tr w3-repeat="datitos">
+    <th>{{TITULO}}</th>
+    <th>{{PAGV}}</th>
+    <th>{{AUTOR}}</th>
+    <th>{{ANIO}}</th>
+    <th>{{PRIMERA}}</th>
+    <th>{{SEGUNDA}}</th>
+  </tr>
+</table>
 
 <script>
-    // Cargar el contenido de otroLupastro.js
-    w3.getHttp("output/otroLupastro.js", function(response) {
-        // Suponiendo que el contenido es un texto que deseas mostrar en la tabla
-        var tableBody = document.getElementById("data-table");
+// Hacer un fetch del JSON
+fetch('https://kudomarkos.github.io/maldiciones/output/otroLupastro.json')
+    .then(response => {
+        // Verificar si la respuesta es correcta
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json(); // Parsear la respuesta como JSON
+    })
+    .then(dataList => {
+        // Estructurar los datos en el formato deseado
+        var data = { "datitos": dataList };
         
-        // Crear una nueva fila
-        var newRow = tableBody.insertRow();
-        var newCell = newRow.insertCell(0);
-        
-        // Insertar el contenido en la celda
-        newCell.textContent = response;
+        // Usar w3.displayObject para mostrar los datos
+        w3.displayObject("id01", data);
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
     });
 </script>
 
