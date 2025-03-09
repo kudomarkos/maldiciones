@@ -32,7 +32,7 @@ jobs:
             git config --local user.name "github-actions"
             git config --local user.email "github-actions@github.com"
             git add output/
-            git commit -m "Update files in output directory"
+            git commit -m "Update files in output directory - $(date '+%Y-%m-%d %H:%M:%S')"
             git push
           else
             echo "No files to commit in output directory."
