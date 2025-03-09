@@ -27,9 +27,11 @@ jobs:
         run: ls -l output
       
       - name: Get repository size
+        id: get_size  # Asignar un ID al paso para referenciarlo más tarde
         run: |
           SIZE=$(curl -s https://api.github.com/repos/kudomarkos/maldiciones | jq .size)
           SIZE_MB=$(echo "scale=2; $SIZE / 1024" | bc)
+          echo "size_mb=$SIZE_MB" >> $GITHUB_ENV  # Exportar la variable como variable de entorno
 
       - name: Update README
         run: |
@@ -41,16 +43,17 @@ jobs:
           echo "![logo](./static_images/logo_maldiciones.png)" >> README.md
           echo "" >> README.md
           echo "## Tamaño del Repositorio" >> README.md
-          echo "El tamaño de este repositorio es aproximadamente $SIZE_MB MB." >> README.md
+          echo "El tamaño de este repositorio es aproximadamente $size_mb MB." >> README.md
 
       - name: Commit and push output directory
         run: |
+          CURRENT_DATE=$(date '+%Y-%m-%d %H:%M:%S')  # Obtener la fecha actual
           if [ -n "$(ls -A output 2>/dev/null)" ]; then
             git config --local user.name "github-actions"
             git config --local user.email "github-actions@github.com"
             git add README.md
             git add output/
-            git commit -m "Update files in output directory - $(date '+%Y-%m-%d %H:%M:%S')"
+            git commit -m "Update files in output directory - $CURRENT_DATE"
             git push
           else
             echo "No files to commit in output directory."
