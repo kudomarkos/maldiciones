@@ -25,12 +25,30 @@ jobs:
 
       - name: List output directory
         run: ls -l output
+      
+      - name: Get repository size
+        run: |
+          SIZE=$(curl -s https://api.github.com/repos/kudomarkos/maldiciones | jq .size)
+          SIZE_MB=$(echo "scale=2; $SIZE / 1024" | bc)
+
+      - name: Update README
+        run: |
+          # Vaciar el README.md y añadir nuevo contenido
+          echo "# Maldiciones" > README.md
+          echo "" >> README.md
+          echo "[https://kudomarkos.github.io/maldiciones/](https://kudomarkos.github.io/maldiciones/)" >> README.md
+          echo "" >> README.md
+          echo "![logo](./static_images/logo_maldiciones.png)" >> README.md
+          echo "" >> README.md
+          echo "## Tamaño del Repositorio" >> README.md
+          echo "El tamaño de este repositorio es aproximadamente $SIZE_MB MB." >> README.md
 
       - name: Commit and push output directory
         run: |
           if [ -n "$(ls -A output 2>/dev/null)" ]; then
             git config --local user.name "github-actions"
             git config --local user.email "github-actions@github.com"
+            git add README.md
             git add output/
             git commit -m "Update files in output directory - $(date '+%Y-%m-%d %H:%M:%S')"
             git push
