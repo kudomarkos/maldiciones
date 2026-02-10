@@ -1,0 +1,112 @@
+CREATE TRIGGER zzods23enero_update_trigger
+AFTER UPDATE ON ZZODS23ENERO
+FOR EACH ROW
+WHEN (
+(
+(NEW.DIA     IS NOT OLD.DIA)     OR
+(NEW.MES     IS NOT OLD.MES)     OR
+(NEW.ANIO    IS NOT OLD.ANIO)    OR
+(NEW.PUBLICACION IS NOT OLD.PUBLICACION) OR
+(NEW.TITULO  IS NOT OLD.TITULO)  OR
+(NEW.PP      IS NOT OLD.PP)      OR
+(NEW.TT      IS NOT OLD.TT)      OR
+(NEW.DIALOGO IS NOT OLD.DIALOGO) OR
+(NEW.COMENTARIO IS NOT OLD.COMENTARIO) OR
+(NEW.PAQUETE IS NOT OLD.PAQUETE) OR
+(NEW.INTERNO IS NOT OLD.INTERNO) OR
+(NEW.MITIPO  IS NOT OLD.MITIPO)  OR
+(NEW.TIPO_HISTORIETA IS NOT OLD.TIPO_HISTORIETA)
+)
+AND
+-- ninguno de los cuatro campos es "malo"
+( UPPER(COALESCE(NEW.TITULO, '')) NOT IN ('??','NO','NO LLEVA HISTORIETA DE ZIPI Y ZAPE')
+
+AND UPPER(COALESCE(NEW.PP, '')) NOT IN ('??','NO','NO LLEVA HISTORIETA DE ZIPI Y ZAPE')
+AND UPPER(COALESCE(NEW.TT, '')) NOT IN ('??','NO','NO LLEVA HISTORIETA DE ZIPI Y ZAPE')
+
+AND UPPER(COALESCE(NEW.DIALOGO, '')) NOT IN ('??','NO','NO LLEVA HISTORIETA DE ZIPI Y ZAPE')
+
+)
+)
+BEGIN
+  -- Actualiza COLECCIONES y REVISTAS para todo el grupo
+  UPDATE ZZODS23ENERO
+  SET
+    COLECCIONES = COALESCE((
+      SELECT group_concat(z.PUBLICACION, ', ')
+      FROM ZZODS23ENERO z
+      WHERE z.TITULO = NEW.TITULO
+        AND z.PP = NEW.PP
+        AND z.TT = NEW.TT
+        AND z.DIALOGO = NEW.DIALOGO
+        AND (z.MITIPO IS NULL OR z.MITIPO != 'R')
+    ), ''),
+    REVISTAS = COALESCE((
+      SELECT group_concat(z.PUBLICACION, ', ')
+      FROM ZZODS23ENERO z
+      WHERE z.TITULO = NEW.TITULO
+        AND z.PP = NEW.PP
+        AND z.TT = NEW.TT
+        AND z.DIALOGO = NEW.DIALOGO
+        AND z.MITIPO = 'R'
+    ), '')
+  WHERE TITULO = NEW.TITULO
+    AND PP = NEW.PP
+    AND TT = NEW.TT
+    AND DIALOGO = NEW.DIALOGO;
+
+  -- Si el primer registro tiene MITIPO = 'R': asignar 'Estreno' solo a ese rowid,
+  -- y PUBLICACION_primero || ' en ' || ANIO_primero a los demás
+  UPDATE ZZODS23ENERO
+  SET DATO = CASE
+    WHEN rowid = (
+      SELECT rowid FROM ZZODS23ENERO p
+      WHERE p.TITULO = NEW.TITULO
+        AND p.PP = NEW.PP
+        AND p.TT = NEW.TT
+        AND p.DIALOGO = NEW.DIALOGO
+      ORDER BY ANIO, MES, DIA
+      LIMIT 1
+    ) THEN 'Estreno'
+    ELSE (
+      SELECT p.PUBLICACION || ' en ' || p.ANIO
+      FROM ZZODS23ENERO p
+      WHERE p.TITULO = NEW.TITULO
+        AND p.PP = NEW.PP
+        AND p.TT = NEW.TT
+        AND p.DIALOGO = NEW.DIALOGO
+      ORDER BY p.ANIO, p.MES, p.DIA
+      LIMIT 1
+    )
+  END
+  WHERE TITULO = NEW.TITULO
+    AND PP = NEW.PP
+    AND TT = NEW.TT
+    AND DIALOGO = NEW.DIALOGO
+    AND (
+      SELECT MITIPO FROM ZZODS23ENERO p
+      WHERE p.TITULO = NEW.TITULO
+        AND p.PP = NEW.PP
+        AND p.TT = NEW.TT
+        AND p.DIALOGO = NEW.DIALOGO
+      ORDER BY ANIO, MES, DIA
+      LIMIT 1
+    ) = 'R';
+
+  -- Si el primer registro NO tiene MITIPO = 'R' (o no existe): poner '??' a todos
+  UPDATE ZZODS23ENERO
+  SET DATO = '??'
+  WHERE TITULO = NEW.TITULO
+    AND PP = NEW.PP
+    AND TT = NEW.TT
+    AND DIALOGO = NEW.DIALOGO
+    AND (
+      SELECT MITIPO FROM ZZODS23ENERO p
+      WHERE p.TITULO = NEW.TITULO
+        AND p.PP = NEW.PP
+        AND p.TT = NEW.TT
+        AND p.DIALOGO = NEW.DIALOGO
+      ORDER BY ANIO, MES, DIA
+      LIMIT 1
+    ) IS NOT 'R';
+END;

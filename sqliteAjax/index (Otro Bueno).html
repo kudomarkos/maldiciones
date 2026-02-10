@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>Publicaciones — Editor</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<style>
+/* ------- CSS simple y compacto ------- */
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;margin:18px;background:#f7f7f8;color:#111}
+body { font-size: 10px; }
+h1{margin:0 0 12px 0}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
+.table-wrap{overflow:auto;max-height:70vh;border:1px solid #ddd;background:#fff;border-radius:6px;padding:6px}
+table{border-collapse:collapse;width:100%;min-width:900px}
+th,td{padding:6px 8px;border-bottom:1px solid #eee;text-align:left}
+th{position:sticky;top:0;background:#fafafa;z-index:2;border-bottom:2px solid #ddd}
+tr:hover td{background:#fcfcff}
+.cell-edit{padding:0;margin:0;border:0;width:100%;height:100%;box-sizing:border-box;font:inherit}
+.filter-input{width:150px;padding:6px;border:1px solid #ccc;border-radius:4px}
+.small{width:70px}
+.status{margin-left:auto;font-size:13px;color:#666}
+.search-row{display:flex;gap:6px;flex-wrap:wrap}
+.btn{padding:6px 10px;border-radius:6px;border:1px solid #bbb;background:#fff;cursor:pointer}
+.btn.primary{background:#1a73e8;color:#fff;border-color:#1761c6}
+.count{font-weight:600}
+.loading{opacity:0.6}
+.note{font-size:13px;color:#444;margin-top:8px}
+</style>
+</head>
+<body>
+<h1>Editor Publicaciones</h1>
+<div class="toolbar">
+<!-- Añadir dentro de <div class="toolbar">, por ejemplo antes de los botones -->
+<input id="copySrc" class="filter-input small" placeholder="ROWID origen" title="ROWID origen">
+<input id="copyDst" class="filter-input small" placeholder="ROWID destino" title="ROWID destino">
+<button class="btn" id="copyBtn">COPIA</button>
+
+  <div class="search-row" id="filters"></div>
+  <button class="btn" id="clearFilters">Limpiar filtros</button>
+  <button class="btn primary" id="reload">Recargar</button>
+  <div class="status" id="status">Cargando columnas...</div>
+</div>
+
+<div class="table-wrap">
+  <table id="dataTable">
+    <thead id="thead"></thead>
+    <tbody id="tbody"></tbody>
+  </table>
+</div>
+<div class="note">Haz clic en una celda para editar; presiona Enter para guardar. Los filtros son búsqueda por substring.</div>
+
+<script>
+(async function(){
+  const $ = sel => document.querySelector(sel);
+  const $$ = sel => Array.from(document.querySelectorAll(sel));
+  let columns = [];
+  let rows = [];
+  const status = document.getElementById("status");
+  const thead = document.getElementById("thead");
+  const tbody = document.getElementById("tbody");
+  const filtersDiv = document.getElementById("filters");
+
+  function setStatus(t){ status.textContent = t; }
+
+  async function fetchColumns(){
+    setStatus("Cargando columnas...");
+    const res = await fetch("/api/columns");
+    columns = await res.json();
+    renderHeader();
+    renderFilters();
+    setStatus("Columnas cargadas.");
+  }
+
+  function renderHeader(){
+    thead.innerHTML = "";
+    const tr = document.createElement("tr");
+    columns.forEach(c=>{
+      const th = document.createElement("th");
+      th.textContent = c;
+      tr.appendChild(th);
+    });
+    thead.appendChild(tr);
+  }
+
+  function renderFilters(){
+    filtersDiv.innerHTML = "";
+    columns.forEach(c=>{
+      const inp = document.createElement("input");
+      inp.className = "filter-input";
+      inp.placeholder = c;
+      inp.dataset.col = c;
+      inp.title = "Filtrar por " + c;
+      inp.addEventListener("input", debounce(loadRows, 300));
+      filtersDiv.appendChild(inp);
+    });
+  }
+
+  function getFilterParams(){
+    const params = new URLSearchParams();
+    document.querySelectorAll(".filter-input").forEach(inp=>{
+      if(inp.value.trim() !== ""){
+        params.append("filter__" + inp.dataset.col, inp.value.trim());
+      }
+    });
+    return params;
+  }
+
+  async function loadRows(){
+    setStatus("Cargando filas...");
+    const params = getFilterParams();
+    params.append("limit","5000");
+    const res = await fetch("/api/rows?" + params.toString());
+    rows = await res.json();
+    renderRows();
+    setStatus("Mostrando " + rows.length + " filas.");
+  }
+
+  function renderRows(){
+    tbody.innerHTML = "";
+    rows.forEach(row=>{
+      const tr = document.createElement("tr");
+      columns.forEach(col=>{
+        const td = document.createElement("td");
+        td.dataset.col = col;
+        td.dataset.id = row.ROWID; // assuming ID column name is ID
+        const v = row[col];
+        td.textContent = v === null ? "" : v;
+        td.addEventListener("click", onCellClick);
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+  }
+
+  function onCellClick(e){
+    const td = e.currentTarget;
+    // Prevent multiple editors
+    if(td.querySelector("input")) return;
+    const col = td.dataset.col;
+    const id = td.dataset.id;
+    const old = td.textContent;
+    td.innerHTML = "";
+    const input = document.createElement("input");
+    input.type = "text";
+    input.className = "cell-edit";
+    input.value = old;
+    td.appendChild(input);
+    input.focus();
+    // select full content
+    input.setSelectionRange(0, input.value.length);
+    input.addEventListener("keydown", async (evt)=>{
+      if(evt.key === "Enter"){
+        evt.preventDefault();
+        const newVal = input.value;
+        if(newVal === old){
+          td.textContent = old;
+          return;
+        }
+        td.classList.add("loading");
+        setStatus("Guardando...");
+        try{
+          const res = await fetch("/api/update", {
+            method: "POST",
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify({id: id, column: col, value: newVal})
+          });
+          const j = await res.json();
+          if(j.ok){
+            td.textContent = newVal;
+            // update local rows array
+            const r = rows.find(rr => String(rr.ROWID) === String(id));
+            if(r) r[col] = newVal;
+            setStatus("Guardado.");
+          } else {
+            td.textContent = old;
+            setStatus("Error: " + (j.error || "no guardado"));
+            alert("Error guardando: " + (j.error || "desconocido"));
+          }
+        } catch(err){
+          td.textContent = old;
+          setStatus("Error de red");
+          alert("Error de red: " + err);
+        } finally {
+          td.classList.remove("loading");
+        }
+      } else if(evt.key === "Escape"){
+        td.textContent = old;
+      }
+    });
+    // lose focus => cancel editor (optional)
+    input.addEventListener("blur", ()=>{
+      // small timeout to allow Enter handler to run first
+      setTimeout(()=> {
+        if(td.querySelector("input")) td.textContent = old;
+      }, 150);
+    });
+  }
+
+  // helpers
+  function debounce(fn, wait){
+    let t;
+    return function(...a){ clearTimeout(t); t = setTimeout(()=>fn.apply(this,a), wait); };
+  }
+
+  // wire buttons
+  document.getElementById("reload").addEventListener("click", loadRows);
+  document.getElementById("clearFilters").addEventListener("click", ()=>{
+    document.querySelectorAll(".filter-input").forEach(i=>i.value="");
+    loadRows();
+  });
+
+  // initial load
+  await fetchColumns();
+  await loadRows();
+
+})();
+</script>
+</body>
+</html>
