@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - 'mis_ordenes.txt'  # Ejecutar el action cuando se modifique el archivo de órdenes
-      - 'Publicaciones.sqlite3'     # Ejecutar el action cuando se modifique la base de datos SQLite
+      - 'Publicaciones.sqlite'     # Ejecutar el action cuando se modifique la base de datos SQLite
 
 jobs:
   execute-commands:
@@ -21,11 +21,11 @@ jobs:
 
       - name: Execute SQLite commands from file
         run: |
-          sqlite3 Publicaciones.sqlite3 < mis_ordenes.txt
+          sqlite3 Publicaciones.sqlite < mis_ordenes.txt
 
       - name: List output directory
         run: ls -l output
-      
+
       - name: Get repository size
         id: get_size  # Asignar un ID al paso para referenciarlo más tarde
         run: |
