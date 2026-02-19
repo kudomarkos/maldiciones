@@ -11,5 +11,6 @@ SELECT * FROM otroLupastro;
 SELECT * FROM TAB_LUPO_PUBLICACIONES;
 .output stdout
 
-
-
+.output output/ZZ1948.json
+SELECT * FROM ODSZZ23ENERO WHERE ANIO=1948 AND DATO="Estreno";
+.output stdout
