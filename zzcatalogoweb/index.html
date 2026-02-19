@@ -5,13 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Zipi y Zape Catálogo</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+  :root{
+    --max-width: 1000px;
+  }/*
+    .logo {width:700px;}*/
+    .amarillo, .rojo {height:200px;}
+
+
+  body{
+    margin:0;
+    font-family: system-ui, Arial, sans-serif;
+    display:flex;
+    justify-content:center; /* centra el contenedor principal horizontalmente */
+  }
+
+  /* contenedor principal que limita ancho a 1000px */
+  .page {
+    width:100%;
+    max-width:var(--max-width);
+    box-sizing:border-box;
+    padding:16px;
+  }
+
+  /* header */
+  header.site-header{
+    display:flex;
+    flex-direction:column;
+    align-items:center; /* centra la imagen y el contenido horizontalmente */
+    justify-content:center;
+    gap:12px;
+    padding:16px 8px;
+    box-sizing:border-box;
+    border-bottom:1px solid #ddd;
+  }
+
+  /* imagen centrada y limitada al ancho del header */
+  .site-header img{
+    display:block;
+    max-width:100%;      /* nunca excede el contenedor */
+    max-height:250px;    /* evita que sea demasiado alta; ajusta si quieres */
+    width:auto;
+    height:auto;
+    object-fit:contain;
+  }
+
+  /* contenido principal con máxima anchura igual (heredado del .page) */
+  main.content{
+    margin-top:16px;
+    padding:16px;
+    box-sizing:border-box;
+  }
+
+  /* ejemplo: limitar la altura del header y del content a 1000px si te refieres a px de ancho/alto máximo */
+  .site-header, main.content {
+    max-width:100%;
+    /* si quisieras también limitar la altura a 1000px: */
+    max-height:1000px;
+    overflow:auto;
+  }
+
+  /* responsive tweaks */
+  @media (max-width:520px){
+    .site-header img{ max-height:120px; }
+  }
+</style>
   </head>
   <body>
-    <img src="ZZLogo.png" class="logo">
-    <img src="ZZChisteRojo.png" class="rojo">
-    <img src="ZZChisteAmarillo.jpg" class="amarillo">
+<div class="page">
+    <header class="site-header">
+      <img src="ZZLogo.png" alt="Foto del header">
+      <h1>Mi sitio</h1>
+      <p>Subtítulo o descripción</p>
+    </header>
+
+    <main class="content">
+      <h2>Contenido</h2>
+      <p>Texto del contenido. El contenedor principal tiene máximo 1000px de ancho.</p>
+    </main>
+  </div>
+
+
     <script src="index.js"></script>
   </body>
 </html>
-
