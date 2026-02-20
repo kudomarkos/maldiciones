@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Zipi y Zape Catálogo</title>
-    <style>:root {
+    <style>
+:root {
   --max-width: 1200px
 }
-.amarillo,
-.rojo {
-  height: 200px
-}
+
 body {
   margin: 0;
   font-family: system-ui,Arial,sans-serif;
@@ -47,20 +45,17 @@ header.site-header {
   text-align: justify;
   text-justify: inter-word
 }
-main.content {
+main {
   margin-top: 16px;
   padding: 16px;
   box-sizing: border-box
 }
 .site-header,
-main.content {
+main {
   max-width: 100%;
 
 }
 
-.tabulator .tabulator-header .tabulator-col.tabulator-sortable[aria-sort=none] .tabulator-col-content .tabulator-col-sorter {
-  display: none
-}
 
     table {
         border-collapse: collapse;
@@ -95,6 +90,63 @@ td:nth-child(3) {
     tr:nth-child(even) {
         background-color: white; /* Blanco para filas pares */
     }
+
+
+/* ------------------------------ */
+#leyenda, #dudas {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+    gap: 10px; /* Espacio entre elementos */
+    margin-bottom: 20px; /* Espacio entre bloques */
+}
+
+.amarillo, .rojo {
+    display: flex;
+    justify-content: center; /* Centra la imagen horizontalmente */
+    align-items: center; /* Centra la imagen verticalmente */
+    background-color: #f0f0f0; /* Color de fondo simple */
+    border: 1px solid #ccc; /* Borde ligero */
+    padding: 10px; /* Espaciado interno */
+}
+
+main .texto {
+    display: flex;
+    flex-direction: column; /* Coloca los elementos en columna */
+    justify-content: center; /* Centra verticalmente el texto */
+    background-color: #fff; /* Color de fondo para el texto */
+    border: 1px solid #ccc; /* Borde ligero */
+    padding: 10px; /* Espaciado interno */
+}
+
+main h2 {
+    margin: 0; /* Elimina márgenes en encabezados */
+}
+
+main img {
+    max-width: 100%; /* Se ajusta a la columna */
+    height: auto; /* Mantiene la proporción */
+}
+
+.leyenda-lista {
+    list-style-type: none; /* Elimina puntos de la lista */
+    padding: 0; /* Elimina espaciado interno de la lista */
+}
+
+.leyenda-lista li {
+    margin: 5px 0; /* Espacio entre cada línea */
+    display: flex; /* Flexbox para alinear símbolos y significados */
+    align-items: center; /* Centrar verticalmente */
+}
+
+.leyenda-simbolo {
+    font-weight: bold; /* Negrita para el símbolo */
+    color: #2c3e50; /* Color del texto del símbolo */
+    margin-right: 10px; /* Espacio entre el símbolo y el significado */
+}
+
+.leyenda-significado {
+    color: #34495e; /* Color del texto del significado */
+}
 </style>
 <link href="https://cdn.jsdelivr.net/npm/tabulator-tables@5.2.7/dist/css/tabulator.min.css" rel="stylesheet">
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tabulator-tables@5.2.7/dist/js/tabulator.min.js"></script>
@@ -111,21 +163,38 @@ td:nth-child(3) {
 <main class="content" id="mainContent">
     <!-- Aquí se generarán los elementos dinámicamente -->
 </main>
-
+<main>
 <div id="leyenda">
-    <div class="containerD">
+        <div class="rojo"> <!-- Columna de la izquierda para la imagen -->
+            <img src="ZZChisteRojo.png" alt="Descripción de la imagen" style="max-width: 100%; height: auto;"> <!-- Ajusta la ruta de la imagen -->
+        </div>
+
+
+        <div class="texto"> <!-- Columna de la derecha para el texto -->
+            <h2>Leyenda</h2>
+             <ul class="leyenda-lista">
+            <li><span class="leyenda-simbolo">P</span>  <span class="leyenda-significado">Pulgarcito (5ª y 6ª)</span></li>
+            <li><span class="leyenda-simbolo">TV</span>  <span class="leyenda-significado">Tío Vivo (2ª)</span></li>
+            <li><span class="leyenda-simbolo">DDT</span>  <span class="leyenda-significado">DDT (3ª)</span></li>
+            <li><span class="leyenda-simbolo">..</span>  <span class="leyenda-significado">....Se está editando esta parte...</span></li>
+        </ul>
+        </div>
+
+</div>
+
+<div id="dudas">
+
+
+        <div class="texto"> <!-- Columna de la derecha para el texto -->
+            <h2>Dudas</h2>
+            <p>Bla bla bla ... se está editando esta parte...</p>
+        </div>
         <div class="amarillo"> <!-- Columna de la izquierda para la imagen -->
             <img src="ZZChisteAmarillo.jpg" alt="Descripción de la imagen" style="max-width: 100%; height: auto;"> <!-- Ajusta la ruta de la imagen -->
         </div>
-        <div class="texto"> <!-- Columna de la derecha para el texto -->
-            <h2>Leyenda</h2>
-            <p>Bla bla bla</p>
-        </div>
-    </div>
+
 </div>
-
-
-
+</main>
 
   </div>
 
