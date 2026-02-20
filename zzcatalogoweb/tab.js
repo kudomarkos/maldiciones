@@ -72,7 +72,7 @@ for (let year = 1948; year <= 1993; year++) {
     fetch(`https://kudomarkos.github.io/maldiciones/output/${fileName}`)
         .then(response => response.json())
         .then(data => {
-            initTabulator(data, tableId, year); // Inicializa Tabulator en la tabla correspondiente
+            initTabulator(data, tableId, ${year}); // Inicializa Tabulator en la tabla correspondiente
         })
         .catch(error => console.error(`Error al cargar el JSON ${year}:`, error));
 }
