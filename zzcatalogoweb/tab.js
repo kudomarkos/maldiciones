@@ -69,7 +69,7 @@ for (let year = 1948; year <= 1993; year++) {
     const tableId = `table${year}`; // Crear el ID dinámico para la tabla
     const fileName = `ZZ${year}.json`; // Crear el nombre del archivo dinámico
 
-    fetch(`kudomarkos.github.io/maldiciones/output/${fileName}`)
+    fetch(`https://kudomarkos.github.io/maldiciones/output/${fileName}`)
         .then(response => response.json())
         .then(data => {
             initTabulator(data, tableId, year); // Inicializa Tabulator en la tabla correspondiente
