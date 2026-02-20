@@ -148,6 +148,30 @@ main img {
 .leyenda-significado {
     color: #34495e; /* Color del texto del significado */
 }
+nav {
+    display: flex;                   /* Utiliza flexbox para el diseño */
+    flex-wrap: wrap;                /* Permite que los elementos se envuelvan en varias filas */
+    justify-content: center;         /* Centra los elementos horizontalmente */
+    align-items: center;             /* Centra los elementos verticalmente */
+}
+nav a {
+    display: inline-block;  /* Cambia a inline-block para alinearlos horizontalmente */
+    text-align: center;    /* Centra el texto */
+    line-height: 2em;      /* Centra verticalmente el texto */
+    text-decoration: none;  /* Quita el subrayado del enlace */
+    border: solid 1px black;
+    border-radius: 3px;    /* Bordes redondeados */
+    margin: 5px;           /* Espacio entre botones */
+    transition: background-color 0.3s;  /* Transición de color al pasar el ratón */
+    padding: 0px;
+    color: black;
+    font-weight: bold;  /* Aplica un estilo de negrita */
+}
+
+nav a:hover {
+    background-color: black;  /* Color de fondo al pasar el ratón */
+    color: white;
+}
 </style>
 
   </head>
@@ -158,7 +182,7 @@ main img {
       <img src="ZZLogo.png" alt="Foto del header">
       <h1>Cronología de Historietas de Zipi y Zape</h1>
         <p>Esta cronología y toda la catalogación necesaria para su realización han sido posibles gracias a la ayuda de los foreros y foreras de los foros <a href="http://lamansion-crg.net/forum/index.php">La Mansión C.R.G.</a> y a <a href="https://www.ojodepez-fanzine.net/latiacomforo/index.php">El foro de la T.I.A</a>. En las columnas de las tablas, después de la fecha, se muestra la publicación original donde se estrenó la historieta; luego, un título, a veces extraído de posteriores publicaciones o "ST" si no llevaba título. Tras ese dato, podréis leer parte del diálogo de la viñeta derecha, información que nos ayudó a identificar las historietas, el número de tiras o franjas de la historieta "TT", el número de páginas, y a la derecha, las demás revistas y colecciones donde se republicaron. En estas tablas veréis muchas abreviaturas de colecciones y revistas; las explico al final en la <a href="#leyenda">Leyenda</a>. También indico algunos datos que aún no dispongo en la sección de <a href="#dudas">Dudas</a>. Por favor, si apreciáis algún error o creéis que falta algún dato, visitad esos foros e informadnos. Muchas gracias.</p>
-
+<nav id="menu"></nav>
     </header>
 <main class="content" id="mainContent">
     <!-- Aquí se generarán los elementos dinámicamente -->

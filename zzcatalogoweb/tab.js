@@ -1,11 +1,19 @@
 document.addEventListener("DOMContentLoaded", function () {
     const mainContent = document.getElementById('mainContent');
-
+    const menu = document.getElementById('menu');
     for (let year = 1948; year <= 1993; year++) {
         const header = document.createElement('h1');
+        header.id = year;  // Establece el id como el año actual
         header.textContent = year;
         mainContent.appendChild(header);
 
+        const link = document.createElement('a'); // Nueva instancia en cada iteración
+        link.href = `#${year}`;
+        link.textContent = year;
+
+
+        // Añadir el enlace al menú
+        menu.appendChild(link);
 
         // Crear la tabla básica
         const table = document.createElement('table');
