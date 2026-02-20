@@ -7,7 +7,7 @@
     <title>Zipi y Zape Catálogo</title>
     <style>
   :root{
-    --max-width: 1000px;
+    --max-width: 1200px;
   }/*
     .logo {width:700px;}*/
     .amarillo, .rojo {height:200px;}
@@ -50,6 +50,9 @@
     object-fit:contain;
   }
 
+.site-header p{ text-indent: 3.5em;   text-align: justify;
+  text-justify: inter-word;}
+
   /* contenido principal con máxima anchura igual (heredado del .page) */
   main.content{
     margin-top:16px;
@@ -61,7 +64,7 @@
   .site-header, main.content {
     max-width:100%;
     /* si quisieras también limitar la altura a 1000px: */
-    max-height:1000px;
+
     overflow:auto;
   }
 
@@ -69,23 +72,126 @@
   @media (max-width:520px){
     .site-header img{ max-height:120px; }
   }
+
+.tabulator .tabulator-header .tabulator-col.tabulator-sortable[aria-sort="none"] .tabulator-col-content .tabulator-col-sorter {
+display: none;
+}
+.tabulator-cell {font-size: 10px;}
+.site-header, main.content {
+    max-width: 100%;
+
+    overflow: hidden; /* Cambia a hidden si no quieres desplazamiento */
+}
+
 </style>
+<link href="https://cdn.jsdelivr.net/npm/tabulator-tables@5.2.7/dist/css/tabulator.min.css" rel="stylesheet">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tabulator-tables@5.2.7/dist/js/tabulator.min.js"></script>
   </head>
   <body>
 <div class="page">
     <header class="site-header">
       <img src="ZZLogo.png" alt="Foto del header">
-      <h1>Mi sitio</h1>
-      <p>Subtítulo o descripción</p>
+      <h1>Cronología de Historietas de Zipi y Zape</h1>
+      <p>Esta cronología y toda la catalogación necesaria para su realización ha sido posible gracias a la ayuda de los foreros y foreras de los foros <a href="http://lamansion-crg.net/forum/index.php">La Mansión C.R.G.</a> y <a href="https://www.ojodepez-fanzine.net/latiacomforo/index.php">El foro de la T.I.A.</a>. En la columnas de las tablas, después de la fecha se muestra la publicación original donde se estrenó la historieta, después un título a veces extraido de posteriores publicaciones o ST si no llevaba título, trás ese dato podréis leer parte del diálogo de la viñeta derecha, dato que nos ayudó a identificar las historietas, número de tiras o franjas de la historieta TT, número de páginas y a la derecha las demás revistas y colecciones donde se republicaron. Por favor, si aprecias algún error, o crees que falta algún dato, visita esos foros e informanos. Muchas Gracias.</p>
     </header>
 
     <main class="content">
-      <h2>Contenido</h2>
-      <p>Texto del contenido. El contenedor principal tiene máximo 1000px de ancho.</p>
+      <h2>1948</h2>
+      <p>...</p>
+<div id="table1948"></div>
+      <h2>1949</h2>
+      <p>...</p>
+<div id="table1949"></div>
+      <h2>1950</h2>
+      <p>...</p>
+<div id="table1950"></div>
+      <h2>1951</h2>
+      <p>...</p>
+<div id="table1951"></div>
+      <h2>1952</h2>
+      <p>...</p>
+<div id="table1952"></div>
+      <h2>1953</h2>
+      <p>...</p>
+<div id="table1953"></div>
+      <h2>1954</h2>
+      <p>...</p>
+<div id="table1954"></div>
+      <h2>1955</h2>
+      <p>...</p>
+<div id="table1955"></div>
+      <h2>1956</h2>
+      <p>...</p>
+<div id="table1956"></div>
+      <h2>1957</h2>
+      <p>...</p>
+<div id="table1957"></div>
+
     </main>
   </div>
 
 
-    <script src="index.js"></script>
+    <script>
+// Función para formatear valores de la columna TT
+function formatCeros(value) {
+    if (typeof value === "number") {
+        return value.toString().padStart(2, '0');
+    } else {
+        return value;
+    }
+}
+
+// Función para obtener la configuración de columnas
+function getColumnDefinitions() {
+    return [
+        {
+            title: "FECHA",
+            formatter: function (cell) {
+                const datos = cell.getData();
+                return `${datos.A}.${formatCeros(datos.MES)}.${formatCeros(datos.DIA)}`;
+            },
+            hozAlign: "center", width:80, sortable: false
+        },
+        {
+            title: "PUBLICACIÓN",
+            field: "P", width:120, sortable: false
+        },
+        {
+            title: "TÍTULO - DIÁLOGO",
+            sortable: false,
+            formatter: function (cell) {
+                const data = cell.getData();
+                return `<b>${data.T}</b> - <i style="color: LightSlateGray;">${data.D}</i>`;
+            }
+        },
+        {title: "PP", field: "PP",hozAlign: "center", width:20, sortable: false},{title: "TT", field: "TT",hozAlign: "center", width:20, sortable: false},
+        {title: "REVISTAS", field: "R"},{title: "COLECCIONES", field: "C"}
+
+        // Otras columnas...
+    ];
+}
+
+// Función para inicializar el Tabulator para diferentes JSON y tablas
+function initTabulator(data, tableId) {
+    new Tabulator(`#${tableId}`, {
+        data: data, // Datos de la fuente
+        layout: "fitColumns", // Ajusta las columnas al ancho del contenedor
+        columns: getColumnDefinitions(), // Llama a la función para obtener columnas
+    });
+}
+
+// Bucle para cargar múltiples JSON
+for (let year = 1948; year <= 1957; year++) {
+    const tableId = `table${year}`; // Crear el ID dinámico para la tabla
+    const fileName = `ZZ${year}.json`; // Crear el nombre del archivo dinámico
+
+    fetch(`https://kudomarkos.github.io/maldiciones/output/${fileName}`)
+        .then(response => response.json())
+        .then(data => {
+            initTabulator(data, tableId); // Inicializa Tabulator en la tabla correspondiente
+        })
+        .catch(error => console.error(`Error al cargar el JSON ${year}:`, error));
+}
+</script>
   </body>
 </html>
