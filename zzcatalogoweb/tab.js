@@ -1,21 +1,37 @@
-
 document.addEventListener("DOMContentLoaded", function () {
     const mainContent = document.getElementById('mainContent');
 
     for (let year = 1948; year <= 1993; year++) {
-        const header = document.createElement('h2');
+        const header = document.createElement('h1');
         header.textContent = year;
         mainContent.appendChild(header);
 
-        const paragraph = document.createElement('p');
-        paragraph.textContent = '...';
-        mainContent.appendChild(paragraph);
 
-        const tableDiv = document.createElement('div');
-        tableDiv.id = `table${year}`;
-        mainContent.appendChild(tableDiv);
+        // Crear la tabla básica
+        const table = document.createElement('table');
+        const thead = document.createElement('thead');
+        const tbody = document.createElement('tbody');
+
+        // Crear la fila de encabezado
+        const headerRow = document.createElement('tr');
+        headerRow.innerHTML = `
+            <th style="text-align: center;">FECHA</th>
+            <th style="text-align: center;">PUBLICACIÓN</th>
+            <th>TÍTULO - DIÁLOGO</th>
+            <th style="text-align: center;">PP</th>
+            <th style="text-align: center;">TT</th>
+            <th>REVISTAS</th>
+            <th>COLECCIONES</th>
+        `;
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+        table.appendChild(tbody);
+        mainContent.appendChild(table);
+
+        loadTableData(year, tbody); // Cargar los datos en la tabla
     }
 });
+
 // Función para formatear valores de la columna TT
 function formatCeros(value) {
     if (typeof value === "number") {
@@ -25,54 +41,29 @@ function formatCeros(value) {
     }
 }
 
-// Función para obtener la configuración de columnas
-function getColumnDefinitions(year) {
-    return [
-        {
-            title: "FECHA",
-            formatter: function (cell) {
-                const datos = cell.getData();
-                return `${year}.${formatCeros(datos.MES)}.${formatCeros(datos.DIA)}`;
-            },
-            hozAlign: "center", width:80
-        },
-        {
-            title: "PUBLICACIÓN",
-            field: "P", width:120
-        },
-        {
-            title: "TÍTULO - DIÁLOGO",
-
-            formatter: function (cell) {
-                const data = cell.getData();
-                return `<b>${data.T}</b> - <i style="color: LightSlateGray;">${data.D}</i>`;
-            }
-        },
-        {title: "PP", field: "PP",hozAlign: "center", width:20},{title: "TT", field: "TT",hozAlign: "center", width:20},
-        {title: "REVISTAS", field: "R"},{title: "COLECCIONES", field: "C"}
-
-        // Otras columnas...
-    ];
-}
-
-// Función para inicializar el Tabulator para diferentes JSON y tablas
-function initTabulator(data, tableId, year) {
-    new Tabulator(`#${tableId}`, {
-        data: data, // Datos de la fuente
-        layout: "fitColumns", // Ajusta las columnas al ancho del contenedor
-        columns: getColumnDefinitions(year), // Llama a la función para obtener columnas
-    });
-}
-
-// Bucle para cargar múltiples JSON
-for (let year = 1948; year <= 1993; year++) {
-    const tableId = `table${year}`; // Crear el ID dinámico para la tabla
-    const fileName = `ZZ${year}.json`; // Crear el nombre del archivo dinámico
+// Función para cargar datos en la tabla
+function loadTableData(year, tbody) {
+    const fileName = `ZZ${year}.json`; // Nombre del archivo JSON
 
     fetch(`https://kudomarkos.github.io/maldiciones/output/${fileName}`)
         .then(response => response.json())
         .then(data => {
-            initTabulator(data, tableId, ${year}); // Inicializa Tabulator en la tabla correspondiente
+            data.forEach(item => {
+                const tr = document.createElement('tr');
+
+                // Crear las celdas según la definición de columnas
+                const fecha = `${year}.${formatCeros(item.MES)}.${formatCeros(item.DIA)}`;
+                tr.innerHTML = `
+                    <td style="text-align: center;">${fecha}</td>
+                    <td>${item.P}</td>
+                    <td><b>${item.T}</b> - <i style="color: LightSlateGray;">${item.D}</i></td>
+                    <td style="text-align: center;">${item.PP}</td>
+                    <td style="text-align: center;">${item.TT}</td>
+                    <td>${item.R}</td>
+                    <td>${item.C}</td>
+                `;
+                tbody.appendChild(tr);
+            });
         })
         .catch(error => console.error(`Error al cargar el JSON ${year}:`, error));
 }
