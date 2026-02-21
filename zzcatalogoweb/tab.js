@@ -1,16 +1,25 @@
 document.addEventListener("DOMContentLoaded", function () {
     const mainContent = document.getElementById('mainContent');
     const menu = document.getElementById('menu');
+
     for (let year = 1948; year <= 1993; year++) {
         const header = document.createElement('h1');
         header.id = year;  // Establece el id como el año actual
-        header.textContent = year;
-        mainContent.appendChild(header);
 
-        const link = document.createElement('a'); // Nueva instancia en cada iteración
+        const yearText = document.createTextNode(year); // Texto del año
+        header.appendChild(yearText); // Añade el texto
+
+        const anchor = document.createElement('a'); // Crea un enlace para la flecha
+        anchor.href = "#"; // Vuelve al inicio de la página
+        anchor.innerHTML = "⇈"; // Flecha hacia arriba
+        // Se eliminaron los estilos en línea
+
+        header.appendChild(anchor); // Añade el enlace al h1
+        mainContent.appendChild(header); // Añade el h1 al contenido principal
+
+        const link = document.createElement('a'); // Nueva instancia en cada iteración para el menú
         link.href = `#${year}`;
         link.textContent = year;
-
 
         // Añadir el enlace al menú
         menu.appendChild(link);
@@ -64,7 +73,7 @@ function loadTableData(year, tbody) {
                 tr.innerHTML = `
                     <td style="text-align: center;">${fecha}</td>
                     <td>${item.P}</td>
-                    <td><b>${item.T}</b> - <i style="color: LightSlateGray;">${item.D}</i></td>
+                    <td title="${item.T} - ${item.D}"><b>${item.T}</b> - <i style="color: LightSlateGray;">${item.D}</i></td>
                     <td style="text-align: center;">${item.PP}</td>
                     <td style="text-align: center;">${item.TT}</td>
                     <td>${item.R}</td>

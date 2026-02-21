@@ -76,9 +76,14 @@ td {
     border: 1px solid black; /* Bordes de 1px */
     padding: 8px; /* Espaciado alrededor del texto */
 }
+td:nth-child(1) {width:60px;} /* FECHA*/
+td:nth-child(2) {width:80px;} /* PUBLICACIÓN */
+td:nth-child(4) {width:10px;} /* PP */
+td:nth-child(5) {width:10px;} /* TT*/
 
 td:nth-child(3) {
-    width:500px;
+    width:550px;
+    max-width:550px;
     overflow: hidden; /* Ocultar el texto que desborda */
     text-overflow: ellipsis; /* Mostrar puntos suspensivos */
     white-space: nowrap; /* Evitar que el texto se rompa en múltiples líneas */
@@ -172,6 +177,21 @@ nav a:hover {
     background-color: black;  /* Color de fondo al pasar el ratón */
     color: white;
 }
+
+#mainContent h1 {
+    width: 100%;           /* Ocupa todo el ancho posible */
+    display: flex;         /* Establece flexbox para los elementos dentro */
+    justify-content: space-between; /* Coloca espacio entre el texto y la flecha */
+    align-items: center;   /* Alinea verticalmente */
+}
+
+#mainContent h1 a {
+    margin-left: 10px;               /* Espacio entre el texto y la flecha */
+    text-decoration: none;            /* Quita el subrayado del enlace */
+    font-size: 1em;                 /* Tamaño de la flecha */
+    color: inherit;                   /* Hereda el color del texto del h1 */
+}
+
 </style>
 
   </head>
