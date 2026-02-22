@@ -43,8 +43,9 @@ jobs:
 
       - name: Commit and push changes
         run: |
+          SIZE="${{ steps.get_size.outputs.size_mb }}"
           git config --local user.name "github-actions"
           git config --local user.email "github-actions@github.com"
           git add README.md
-          git commit -m "chore: rebuild README with repo size ${ { { SIZE } } } MB [ci skip]"
+          git commit -m "chore: rebuild README with repo size $SIZE MB [ci skip]"
           git push
