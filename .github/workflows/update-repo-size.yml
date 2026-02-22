@@ -1,0 +1,55 @@
+name: Rebuild README with repo size
+
+on:
+  schedule:
+    - cron: '0 0,4,8,12,16,20 * * *'  # cada 4 horas (UTC)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get repository size (KB) from GitHub API
+        id: get_size
+        env:
+          REPO: ${{ github.repository }}
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          api_url="https://api.github.com/repos/${REPO}"
+          size_kb=$(curl -s -H "Authorization: token ${TOKEN}" "$api_url" | jq -r .size)
+          size_mb=$(awk "BEGIN {printf \"%.2f\", ${size_kb}/1024}")
+          echo "size_mb=${size_mb}" >> $GITHUB_OUTPUT
+
+      - name: Rebuild README.md
+        run: |
+          SIZE="${{ steps.get_size.outputs.size_mb }}"
+          cat > README.md <<'EOF'
+# Maldiciones
+
+https://kudomarkos.github.io/maldiciones/
+
+![logo](./static_images/logo_maldiciones.png)
+
+## Tamaño del Repositorio
+El tamaño de este repositorio es aproximadamente ${SIZE} MB.
+EOF
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "chore: rebuild README with repo size ${ { { SIZE } } } MB [ci skip]"
+          git push
