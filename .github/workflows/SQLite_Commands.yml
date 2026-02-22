@@ -17,7 +17,7 @@ jobs:
         run: sudo apt-get install sqlite3
 
       - name: Create output directory
-        run: mkdir -p output  # Crea la carpeta 'output' si no existe
+        run: mkdir -p zzcatalogoweb/output  # Crea la carpeta 'output' si no existe
 
       - name: Execute SQLite commands from file
         run: |
