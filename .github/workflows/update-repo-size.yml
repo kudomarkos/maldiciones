@@ -31,16 +31,15 @@ jobs:
       - name: Rebuild README.md
         run: |
           SIZE="${{ steps.get_size.outputs.size_mb }}"
-          cat > README.md <<'EOF'
-# Maldiciones
-
-https://kudomarkos.github.io/maldiciones/
-
-![logo](./static_images/logo_maldiciones.png)
-
-## Tamaño del Repositorio
-El tamaño de este repositorio es aproximadamente ${SIZE} MB.
-EOF
+          NOW=$(date '+%Y-%m-%d %H:%M:%S')
+          echo "# Maldiciones" > README.md
+          echo "" >> README.md
+          echo "[https://kudomarkos.github.io/maldiciones/](https://kudomarkos.github.io/maldiciones/)" >> README.md
+          echo "" >> README.md
+          echo "![logo](./static_images/logo_maldiciones.png)" >> README.md
+          echo "" >> README.md
+          echo "## Tamaño del Repositorio" >> README.md
+          echo "El tamaño de este repositorio es aproximadamente ${SIZE} MB. (Actualizado: ${NOW})" >> README.md
 
       - name: Commit and push changes
         run: |
