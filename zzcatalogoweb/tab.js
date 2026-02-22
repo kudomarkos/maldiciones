@@ -62,7 +62,7 @@ function formatCeros(value) {
 function loadTableData(year, tbody) {
     const fileName = `ZZ${year}.json`; // Nombre del archivo JSON
 
-    fetch(`https://kudomarkos.github.io/maldiciones/output/${fileName}`)
+    fetch(`https://kudomarkos.github.io/maldiciones/zzcatalogoweb/output/${fileName}`)
         .then(response => response.json())
         .then(data => {
             data.forEach(item => {
