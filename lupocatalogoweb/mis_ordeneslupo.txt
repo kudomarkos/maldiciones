@@ -1,0 +1,12 @@
+.mode json
+.output output/PUBLICACIONES_BRUGUERA.json
+SELECT * FROM TAB_PUBLICACIONES_BRUGUERA;
+.output stdout
+
+.output output/otroLupastro.json
+SELECT * FROM otroLupastro;
+.output stdout
+
+.output output/TAB_LUPO_PUBLICACIONES.json
+SELECT * FROM TAB_LUPO_PUBLICACIONES;
+.output stdout
