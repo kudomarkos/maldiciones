@@ -3,8 +3,8 @@ name: Execute SQLite Commands
 on:
   push:
     paths:
-      - './zzcatalogoweb/mis_ordenesZZ.txt'  # Ejecutar el action cuando se modifique el archivo de órdenes
-      - './zzcatalogoweb/PublicacionesZZ.sqlite'     # Ejecutar el action cuando se modifique la base de datos SQLite
+      - 'zzcatalogoweb/mis_ordenesZZ.txt'  # Ejecutar el action cuando se modifique el archivo de órdenes
+      - 'zzcatalogoweb/PublicacionesZZ.sqlite'     # Ejecutar el action cuando se modifique la base de datos SQLite
 
 jobs:
   execute-commands:
