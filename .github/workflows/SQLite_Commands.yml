@@ -21,7 +21,7 @@ jobs:
 
       - name: Execute SQLite commands from file
         run: |
-          sqlite3 ./zzcatalogoweb/Publicaciones.sqlite < ./zzcatalogoweb/mis_ordenesZZ.txt
+          sqlite3 ./zzcatalogoweb/PublicacionesZZ.sqlite < ./zzcatalogoweb/mis_ordenesZZ.txt
 
       - name: Commit and push output directory
         run: |
