@@ -5,4 +5,4 @@
 ![logo](./static_images/logo_maldiciones.png)
 
 ## Tamaño del Repositorio
-El tamaño de este repositorio es aproximadamente 168.19 MB. (Actualizado: 2026-02-23 08:58:34)
+El tamaño de este repositorio es aproximadamente 168.20 MB. (Actualizado: 2026-02-23 13:20:19)
