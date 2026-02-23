@@ -33,6 +33,7 @@ jobs:
           SIZE="${{ steps.get_size.outputs.size_mb }}"
           MIPESO=$(du -sh --exclude='.git' . | awk '{print $1}')
           NOW=$(date '+%Y-%m-%d %H:%M:%S')
+          PESONORMAL=""
           echo "# Maldiciones" > README.md
           echo "" >> README.md
           echo "[https://kudomarkos.github.io/maldiciones/](https://kudomarkos.github.io/maldiciones/)" >> README.md
