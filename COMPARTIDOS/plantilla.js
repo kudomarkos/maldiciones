@@ -70,8 +70,8 @@ function loadTableData(year, tbody) {
                 const imagen = `ddt_ep03_extra_ddt_ep03_extra${formatCerosCuatro(item.numExtra)}_${formatCerosTres(item.pagina)}`;
                 tr.innerHTML = `
                     <td>${imagen}</td>
-                    <td>${item.personaje}</td>
-                    <td>${item.titulo}</td>
+                    <td>${item.personaje ?? ""}</td>
+                    <td>${item.titulo ?? ""}</td>
                 `;
                 tbody.appendChild(tr);
             });
