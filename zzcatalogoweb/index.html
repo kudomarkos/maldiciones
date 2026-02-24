@@ -115,7 +115,7 @@ td:nth-child(3) {
     padding: 10px; /* Espaciado interno */
 }
 
-main .texto {
+#bajos .texto {
     display: flex;
     flex-direction: column; /* Coloca los elementos en columna */
     justify-content: center; /* Centra verticalmente el texto */
@@ -124,35 +124,33 @@ main .texto {
     padding: 10px; /* Espaciado interno */
 }
 
-main h2 {
+#bajos h2 {
     margin: 0; /* Elimina márgenes en encabezados */
 }
 
-main img {
+#bajos img {
     max-width: 100%; /* Se ajusta a la columna */
     height: auto; /* Mantiene la proporción */
 }
 
-.leyenda-lista {
-    list-style-type: none; /* Elimina puntos de la lista */
-    padding: 0; /* Elimina espaciado interno de la lista */
+.leyenda-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Tres columnas */
+    gap: 10px; /* Espacio entre columnas */
 }
 
-.leyenda-lista li {
-    margin: 5px 0; /* Espacio entre cada línea */
-    display: flex; /* Flexbox para alinear símbolos y significados */
-    align-items: center; /* Centrar verticalmente */
+.leyenda-lista {
+    list-style-type: none; /* Quitar los puntos de la lista */
+    padding-left: 0; /* Quitar padding por defecto */
+    font-size: 11px;
 }
 
 .leyenda-simbolo {
-    font-weight: bold; /* Negrita para el símbolo */
-    color: #2c3e50; /* Color del texto del símbolo */
-    margin-right: 10px; /* Espacio entre el símbolo y el significado */
+    font-weight: bold; /* Resaltar el símbolo */
 }
 
-.leyenda-significado {
-    color: #34495e; /* Color del texto del significado */
-}
+/* ------------------------------ */
+
 nav {
     display: flex;                   /* Utiliza flexbox para el diseño */
     flex-wrap: wrap;                /* Permite que los elementos se envuelvan en varias filas */
@@ -207,38 +205,86 @@ nav a:hover {
 <main class="content" id="mainContent">
     <!-- Aquí se generarán los elementos dinámicamente -->
 </main>
-<main>
-<div id="leyenda">
-        <div class="rojo"> <!-- Columna de la izquierda para la imagen -->
-            <img src="ZZChisteRojo.png" alt="Descripción de la imagen" style="max-width: 100%; height: auto;"> <!-- Ajusta la ruta de la imagen -->
+<main id="bajos">
+    <div id="leyenda">
+        <div class="rojo">
+            <img src="ZZChisteRojo.png" alt="Descripción de la imagen" style="max-width: 100%; height: auto;">
         </div>
 
-
-        <div class="texto"> <!-- Columna de la derecha para el texto -->
+        <div class="texto">
             <h2>Leyenda</h2>
-             <ul class="leyenda-lista">
-            <li><span class="leyenda-simbolo">P</span>  <span class="leyenda-significado">Pulgarcito (5ª y 6ª)</span></li>
-            <li><span class="leyenda-simbolo">TV</span>  <span class="leyenda-significado">Tío Vivo (2ª)</span></li>
-            <li><span class="leyenda-simbolo">DDT</span>  <span class="leyenda-significado">DDT (3ª)</span></li>
-            <li><span class="leyenda-simbolo">..</span>  <span class="leyenda-significado">....Se está editando esta parte...</span></li>
-        </ul>
+            <div class="leyenda-container">
+                <div class="leyenda-columna">
+                    <ul class="leyenda-lista">
+                        <li><span class="leyenda-simbolo">OP:</span> <span class="leyenda-significado">Olé Bruguera y Olé 1ª Ediciones B.</span></li>
+                        <li><span class="leyenda-simbolo">OM:</span> <span class="leyenda-significado">Olé 2ª Ediciones B.</span></li>
+                        <li><span class="leyenda-simbolo">OG:</span> <span class="leyenda-significado">Olé 3ª Ediciones B.</span></li>
+                        <li><span class="leyenda-simbolo">MGR:</span> <span class="leyenda-significado">Magos de la Risa.</span></li>
+                        <li><span class="leyenda-simbolo">MGL:</span> <span class="leyenda-significado">Magos del Lápiz.</span></li>
+                        <li><span class="leyenda-simbolo">ALEH:</span> <span class="leyenda-significado">Alegres Historietas.</span></li>
+                        <li><span class="leyenda-simbolo">MH:</span> <span class="leyenda-significado">Magos del Humor</span></li>
+                        <li><span class="leyenda-simbolo">MGHCR:</span> <span class="leyenda-significado">Magos del Humor de Cera y Ramis.</span></li>
+                        <li><span class="leyenda-simbolo">DIARIO:</span> <span class="leyenda-significado">Olé SuperComic de Diarios</span></li>
+                        <li><span class="leyenda-simbolo">CZ:</span> <span class="leyenda-significado">Colección Z</span></li>
+                        <li><span class="leyenda-simbolo">BRUNCH:</span> <span class="leyenda-significado">Enciclopedia del Comic de Brunch</span></li>
+                        <li><span class="leyenda-simbolo">MUNDO2005:</span> <span class="leyenda-significado">Biblioteca El Mundo (2005 blanca).</span></li>
+                        <li><span class="leyenda-simbolo">MUNDO2006:</span> <span class="leyenda-significado">Biblioteca El Mundo (2006 roja).</span></li>
+                        <li><span class="leyenda-simbolo">SH:</span> <span class="leyenda-significado">Super Humor Ediciones B</span></li>
+                        <li><span class="leyenda-simbolo">RBA:</span> <span class="leyenda-significado">Clásicos del Humor RBA.</span></li>
+                        <li><span class="leyenda-simbolo">LMZZ:</span> <span class="leyenda-significado">Lo Mejor de.. (Penguin R.H.).</span></li>
+                        <li><span class="leyenda-simbolo">SALVAT:</span> <span class="leyenda-significado">65ª Aniversario de ZyZ (Salvat).</span></li>
+                        <li><span class="leyenda-simbolo">P:</span> <span class="leyenda-significado">Pulgarcito.</span></li>
+                        <li><span class="leyenda-simbolo">DAN:</span> <span class="leyenda-significado">DinDan 2ª época.</span></li>
+                        <li><span class="leyenda-simbolo">DDT:</span> <span class="leyenda-significado">DDT 3ª época.</span></li>
+                        <li><span class="leyenda-simbolo">TV:</span> <span class="leyenda-significado">Tio Vivo 2ª época.</span></li>
+                        <li><span class="leyenda-simbolo">GPL:</span> <span class="leyenda-significado">Gran Pulgarcito.</span></li>
+                        <li><span class="leyenda-simbolo">SPLDDT:</span> <span class="leyenda-significado">Suplemento de Historietas del DDT.</span></li>
+                    </ul>
+                </div>
+ <div class="leyenda-columna">
+                    <ul class="leyenda-lista">
+                        <li><span class="leyenda-simbolo">VEN:</span> <span class="leyenda-significado">Ven y Ven.</span></li>
+                        <li><span class="leyenda-simbolo">COP:</span> <span class="leyenda-significado">Copito 1ª época (1977).</span></li>
+                        <li><span class="leyenda-simbolo">M:</span> <span class="leyenda-significado">Mortadelo.</span></li>
+                        <li><span class="leyenda-simbolo">ME:</span> <span class="leyenda-significado">Mortadelo Especial.</span></li>
+                        <li><span class="leyenda-simbolo">MG:</span> <span class="leyenda-significado">Mortadelo Gigante.</span></li>
+                        <li><span class="leyenda-simbolo">ZZ:</span> <span class="leyenda-significado">Zipi y Zape (Bruguera).</span></li>
+                        <li><span class="leyenda-simbolo">ZE:</span> <span class="leyenda-significado">Zipi y Zape Especial.</span></li>
+                        <li><span class="leyenda-simbolo">XN:</span> <span class="leyenda-significado">Extras Numerados.</span></li>
+                        <li><span class="leyenda-simbolo">BRU:</span> <span class="leyenda-significado">Bruguelandia.</span></li>
+                        <li><span class="leyenda-simbolo">SZ:</span> <span class="leyenda-significado">Super Zipi y Zape (Bruguera).</span></li>
+                        <li><span class="leyenda-simbolo">SMORT:</span> <span class="leyenda-significado">Super Mortadelo.</span></li>
+                        <li><span class="leyenda-simbolo">SP:</span> <span class="leyenda-significado">Super Pulgarcito (1949).</span></li>
+                        <li><span class="leyenda-simbolo">SPUL2:</span> <span class="leyenda-significado">Super Pulgarcito (1970-1982).</span></li>
+                        <li><span class="leyenda-simbolo">SCARP:</span> <span class="leyenda-significado">Super Carpanta.</span></li>
+                        <li><span class="leyenda-simbolo">SDDT:</span> <span class="leyenda-significado">Super DDT.</span></li>
+                        <li><span class="leyenda-simbolo">STVV:</span> <span class="leyenda-significado">Super Tio Vivo.</span></li>
+                        <li><span class="leyenda-simbolo">SCAT:</span> <span class="leyenda-significado">Super Cataplasma.</span></li>
+                        <li><span class="leyenda-simbolo">SZEDB:</span> <span class="leyenda-significado">Super Zipi y Zape (Ediciones B).</span></li>
+                        <li><span class="leyenda-simbolo">ZZEDB:</span> <span class="leyenda-significado">Zipi y Zape (Ediciones B).</span></li>
+                        <li><span class="leyenda-simbolo">ZXEDB:</span> <span class="leyenda-significado">Zipi y Zape Extra (Ediciones B).</span></li>
+                        <li><span class="leyenda-simbolo">JORDI:</span> <span class="leyenda-significado">Jordi (1973-1974).</span></li>
+                        <li><span class="leyenda-simbolo">GM:</span> <span class="leyenda-significado">Gente Menuda 3ª época (ABC).</span></li>
+                    </ul>
+                </div>
+            </div>
         </div>
+    </div>
 
-</div>
-
-<div id="dudas">
-
-
-        <div class="texto"> <!-- Columna de la derecha para el texto -->
+    <div id="dudas">
+        <div class="texto">
             <h2>Dudas</h2>
-            <p>Bla bla bla ... se está editando esta parte...</p>
+            <p>En estos momentos busco información sobre: Tio Vivo Extra Primavera 1977 , Pulgarcito Extra Primavera 1966, Pulgarcito Extra Verano/Vacaciones 1975, 7 de los Copito de 1977, TV0639, TV0745, TV0788, TV0797, ZZ372, ZZ528 y algunos Extras numerados.</p>
+<p>Por otra parte estoy buscando con los números NF la continuación de la historieta larga "El Secuestro".</p>
+<p>Estoy repasando los diálogos de algunas historietas de 6 tiras, que aparecen como extrenos después de 1970. Es obvio que al cambiar los diálogos de las viñetas, se han confundido</p>
+<p>Y por último estoy también mirando de dónde han salido algunas historietas de Olé, que le pasa exactamente como lo descrito antes con los diálogos, y no logro encontrar su estreno</p>
         </div>
-        <div class="amarillo"> <!-- Columna de la izquierda para la imagen -->
-            <img src="ZZChisteAmarillo.jpg" alt="Descripción de la imagen" style="max-width: 100%; height: auto;"> <!-- Ajusta la ruta de la imagen -->
+        <div class="amarillo">
+            <img src="ZZChisteAmarillo.jpg" alt="Descripción de la imagen" style="max-width: 100%; height: auto;">
         </div>
-
-</div>
+    </div>
 </main>
+
 
   </div>
 
