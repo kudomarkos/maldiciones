@@ -1,8 +1,11 @@
 name: Rebuild README with repo size
 
 on:
-  schedule:
-    - cron: '0 0,4,8,12,16,20 * * *'  # cada 4 horas (UTC)
+  push:
+    branches:
+      - main     
+    paths:
+      - '**'      
   workflow_dispatch: {}
 
 permissions:
