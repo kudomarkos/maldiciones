@@ -67,7 +67,7 @@ function loadTableData(year, tbody) {
                 const tr = document.createElement('tr');
 
                 // Crear las celdas según la definición de columnas
-                const imagen = `ddt_ep03_extra_ddt_ep03_extra${formatCerosCuatro(item.numExtra)}_${formatCerosTres(item.pagina)}.jpg`;
+                const imagen = `ddtep03_extra${formatCerosTres(item.numExtra)}_${formatCerosTres(item.pagina)}.jpg`;
                 tr.innerHTML = `
                     <td>${imagen}</td>
                     <td>${item.personaje ?? ""}</td>
