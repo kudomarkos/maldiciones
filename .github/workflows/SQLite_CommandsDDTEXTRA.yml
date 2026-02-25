@@ -1,0 +1,40 @@
+name: Execute SQLite Commands DDTExtra
+
+on:
+  push:
+    paths:
+      - 'otros_sqlite/ordenes_ddt.txt'  # Ejecutar el action cuando se modifique el archivo de órdenes
+      - 'otros_sqlite/ddtextra.sqlite'     # Ejecutar el action cuando se modifique la base de datos SQLite
+
+jobs:
+  execute-commands:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install SQLite
+        run: sudo apt-get install sqlite3
+
+      - name: Create output directory
+        run: mkdir -p COMPARTIDOS  # Crea la carpeta 'output' si no existe
+
+      - name: Execute SQLite commands from file
+        run: |
+          sqlite3 ./otros_sqlite/ddtextra.sqlite < ./otros_sqlite/ordenes_ddt.txt
+
+      - name: Commit and push output directory
+        run: |
+          CURRENT_DATE=$(date '+%Y-%m-%d %H:%M:%S')  # Obtener la fecha actual
+          if [ -n "$(ls -A ./COMPARTIDOS 2>/dev/null)" ]; then
+            git config --local user.name "github-actions"
+            git config --local user.email "github-actions@github.com"
+            git add .
+            git commit -m "Update files in ./COMPARTIDOS directory - $CURRENT_DATE"
+            git push
+          else
+            echo "No files to commit in ./COMPARTIDOS directory."
+          fi
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

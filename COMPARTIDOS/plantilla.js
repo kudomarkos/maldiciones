@@ -16,8 +16,12 @@ document.addEventListener("DOMContentLoaded", function () {
         const headerRow = document.createElement('tr');
         headerRow.innerHTML = `
             <th>IMAGEN</th>
-            <th>Serie/Personaje</th>
+            <th>VOL</th>
+            <th>PAG</th>
+            <th>Serie</th>
             <th>Título</th>
+            <th>Personaje</th>
+            <th>Autores</th>
 
         `;
         thead.appendChild(headerRow);
@@ -67,11 +71,15 @@ function loadTableData(year, tbody) {
                 const tr = document.createElement('tr');
 
                 // Crear las celdas según la definición de columnas
-                const imagen = `ddtep03_extra${formatCerosTres(item.numExtra)}_${formatCerosTres(item.pagina)}.jpg`;
+                /*const imagen = `ddtep03_extra${formatCerosTres(item.numExtra)}_${formatCerosTres(item.pagina)}.jpg`;*/
                 tr.innerHTML = `
-                    <td>${imagen}</td>
-                    <td>${item.personaje ?? ""}</td>
+                    <td>${item.imagen}</td>
+                    <td>${item.volumen}</td>
+                    <td>${item.pagina}</td>
+                    <td>${item.serie}</td>
                     <td>${item.titulo ?? ""}</td>
+                    <td>${item.personaje ?? ""}</td>
+                    <td>${item.autor ?? ""}</td>
                 `;
                 tbody.appendChild(tr);
             });

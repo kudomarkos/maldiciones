@@ -1,0 +1,5 @@
+.mode json
+
+.output COMPARTIDOS/ddtextra.json
+select "ddtep03_extra" || numExtraa || "-" || paginaa || ".jpg" as imagen, numExtraa as volumen, paginaa as pagina, serie, titulo, personaje, autor from vista_formateada order by volumen, pagina;
+.output stdout
