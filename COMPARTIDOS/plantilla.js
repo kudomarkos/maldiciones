@@ -76,7 +76,7 @@ function loadTableData(year, tbody) {
                     <td>${item.imagen}</td>
                     <td>${item.volumen}</td>
                     <td>${item.pagina}</td>
-                    <td>${item.serie}</td>
+                    <td>${item.serie ?? ""}</td>
                     <td>${item.titulo ?? ""}</td>
                     <td>${item.personaje ?? ""}</td>
                     <td>${item.autor ?? ""}</td>
