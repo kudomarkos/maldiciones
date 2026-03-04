@@ -7,16 +7,49 @@ import json
 import sqlite3
 import os
 import io
+import unicodedata
 
 PORT = 8000
 DB_PATH = os.path.join(os.path.dirname(__file__), "PublicacionesZZ.sqlite")
 TABLE = "ZZODS23ENERO"
+
+
+
+def strip_accents(val):
+    if val is None:
+        return None
+    # Si recibimos bytes, intentar decodificar UTF-8
+    if isinstance(val, (bytes, bytearray)):
+        try:
+            s = val.decode('utf-8')
+        except Exception:
+            s = val.decode('latin-1', 'ignore')
+    else:
+        s = str(val)
+    # Normalizar a NFD y eliminar marcas diacríticas (Mn)
+    normalized = unicodedata.normalize('NFD', s)
+    out = ''.join(ch for ch in normalized if unicodedata.category(ch) != 'Mn')
+    # Opcional: tratar ligaduras o caracteres especiales si los quieres mapear
+    # out = out.replace('ß', 'ss').replace('Ł', 'L').replace('ł', 'l')
+    return out
+import unicodedata, sqlite3
+
+def strip_accents(s):
+    if s is None:
+        return None
+    return ''.join(ch for ch in unicodedata.normalize('NFD', s) if unicodedata.category(ch) != 'Mn')
+
+
+
+
+
 
 class Handler(http.server.BaseHTTPRequestHandler):
     def _db(self):
         # per-request connection
         conn = sqlite3.connect(DB_PATH)
         conn.row_factory = sqlite3.Row
+        conn.create_function("strip_accents", 1, strip_accents)
         return conn
 
     def _send(self, status=200, ctype="application/json; charset=utf-8", data=b""):
@@ -67,7 +100,8 @@ class Handler(http.server.BaseHTTPRequestHandler):
                     v = vals[0].strip()
                     if v != "":
                         col = k.split("__",1)[1]
-                        filters.append(f"{col} LIKE ?")
+                        #filters.append(f"{col} LIKE ?")
+                        filters.append(f"strip_accents(LOWER({col})) LIKE strip_accents(LOWER(?))")
                         params.append(f"%{v}%")
             where = ("WHERE " + " AND ".join(filters)) if filters else ""
             sql = f"SELECT ROWID as ROWID, * FROM {TABLE} {where} ORDER BY ANIO,MES,DIA,PUBLICACION LIMIT ? OFFSET ?"
